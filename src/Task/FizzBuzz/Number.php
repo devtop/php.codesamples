@@ -31,9 +31,27 @@ class Number
         $this->number = $number;
     }
 
+    /**
+     * @return mixed
+     */
     public function get()
     {
         return $this->number;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getNumber()
+    {
+        return $this->number;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFizz()
+    {
+        return ($this->number % 3 === 0);
+    }
 }

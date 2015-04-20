@@ -27,7 +27,7 @@ class NumberTest extends \PHPUnit_Framework_TestCase
         $subject = new Number();
 
         $subject->set($number);
-        $this->assertSame($number, $subject->get(), 'Did not get, what I set.');
+        $this->assertSame($number, $subject->getNumber(), 'Did not get, what I set.');
     }
 
     /**
@@ -35,11 +35,32 @@ class NumberTest extends \PHPUnit_Framework_TestCase
      * @depends testSetAndGetNumber
      * @dataProvider dpGoodNumbers
      */
-    public function testSetNumberThroughConstruct($number)
+    public function testSetNumberThroughConstructor($number)
     {
         $subject = new Number($number);
 
-        $this->assertSame($number, $subject->get(), 'Did not get, what I set.');
+        $this->assertSame($number, $subject->getNumber(), 'Did not get, what I set.');
     }
 
+    /**
+     * @return array
+     */
+    public function dpFizzNumbers()
+    {
+        return [
+            [3], [6], [0], [9], [81], [-18]
+        ];
+    }
+
+    /**
+     * @param $number
+     * @depends testSetNumberThroughConstructor
+     * @dataProvider dpFizzNumbers
+     */
+    public function testDetectFizzNumbers($number)
+    {
+        $subject = new Number($number);
+
+        $this->assertTrue($subject->isFizz(), 'That number should be a fizz');
+    }
 }
