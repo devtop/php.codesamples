@@ -1,6 +1,6 @@
 {
   "name": "devtop/php.samplefiles",
-  "description": "Some interesting php code samples of Tobias Ranft",
+  "description": "Some interesting php code samples made by Tobias Ranft",
   "require": {
     "php": ">=5.4"
   }

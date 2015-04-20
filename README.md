@@ -1,1 +1,1 @@
-Some interesting code samples from Tobias Ranft
+Some interesting code samples made by Tobias Ranft

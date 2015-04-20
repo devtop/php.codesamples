@@ -1,0 +1,7 @@
+<phpunit bootstrap="src/autoload.php" colors="true">
+    <testsuites>
+        <testsuite name="PHP Code Samples by Tobias Ranft">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
