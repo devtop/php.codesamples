@@ -48,10 +48,20 @@ class Number
     }
 
     /**
+     * Fizz Detection
      * @return bool
      */
     public function isFizz()
     {
         return ($this->number % 3 === 0);
+    }
+
+    /**
+     * BuzzDetection
+     * @return bool
+     */
+    public function isBuzz()
+    {
+        return ($this->number % 5 == 0);
     }
 }

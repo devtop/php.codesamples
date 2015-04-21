@@ -14,7 +14,7 @@ class NumberTest extends \PHPUnit_Framework_TestCase
     public function dpGoodNumbers()
     {
         return [
-            [0], [1], [-1], [1000], [71]
+            [0], [1], [-1], [15], [-15], [100], [1000], [1001], [71]
         ];
     }
 
@@ -43,6 +43,7 @@ class NumberTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Provides Fizz numbers
      * @return array
      */
     public function dpFizzNumbers()
@@ -61,6 +62,28 @@ class NumberTest extends \PHPUnit_Framework_TestCase
     {
         $subject = new Number($number);
 
-        $this->assertTrue($subject->isFizz(), 'That number should be a fizz');
+        $this->assertTrue($subject->isFizz(), 'That number should be a Fizz');
+    }
+
+    /**
+     * Provides Buzz numbers
+     * @return array
+     */
+    public function dpBuzzNumbers()
+    {
+        return [
+            [0], [5], [-5], [50], [15]
+        ];
+    }
+
+    /**
+     * @param $number
+     * @dataProvider dpBuzzNumbers
+     */
+    public function testDetectBuzzNumbers($number)
+    {
+        $subject = new Number($number);
+
+        $this->assertTrue($subject->isBuzz());
     }
 }
