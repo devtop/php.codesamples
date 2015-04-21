@@ -36,6 +36,18 @@ class Number
      */
     public function get()
     {
+        if ($this->isFizz() && $this->isBuzz()) {
+            return 'FizzBuzz';
+        }
+
+        elseif ($this->isFizz()) {
+            return 'Fizz';
+        }
+
+        elseif ($this->isBuzz()) {
+            return 'Buzz';
+        }
+
         return $this->number;
     }
 
@@ -57,7 +69,7 @@ class Number
     }
 
     /**
-     * BuzzDetection
+     * Buzz Detection
      * @return bool
      */
     public function isBuzz()

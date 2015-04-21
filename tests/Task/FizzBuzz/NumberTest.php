@@ -79,11 +79,45 @@ class NumberTest extends \PHPUnit_Framework_TestCase
     /**
      * @param $number
      * @dataProvider dpBuzzNumbers
+     * @depends testSetNumberThroughConstructor
      */
     public function testDetectBuzzNumbers($number)
     {
         $subject = new Number($number);
 
         $this->assertTrue($subject->isBuzz());
+    }
+
+    /**
+     * @return array
+     */
+    public function dpNumbersAndFizzAndBuzzAndFizzBuzz()
+    {
+        return [
+            [1, 1],
+            [2, 2],
+            [3, 'Fizz'],
+            [4, 4],
+            [5, 'Buzz'],
+            [15, 'FizzBuzz'],
+            [0, 'FizzBuzz'],
+            [-1, -1],
+            [-3, 'Fizz'],
+            [-5, 'Buzz'],
+            [-15, 'FizzBuzz']
+        ];
+    }
+
+    /**
+     * @param $number
+     * @param $expect
+     * @dataProvider dpNumbersAndFizzAndBuzzAndFizzBuzz
+     * @depends testSetNumberThroughConstructor
+     */
+    public function testFizzBuzzSubstitution($number, $expect)
+    {
+        $subject = new Number($number);
+
+        $this->assertSame($expect, $subject->get(), 'Substitution does not work.');
     }
 }
