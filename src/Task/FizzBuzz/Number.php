@@ -24,6 +24,14 @@ class Number
     }
 
     /**
+     * @return mixed
+     */
+    public function __invoke()
+    {
+        return $this->get();
+    }
+
+    /**
      * @param $number
      */
     public function set($number)

@@ -120,4 +120,17 @@ class NumberTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($expect, $subject->get(), 'Substitution does not work.');
     }
+
+    /**
+     * @param $number
+     * @param $expect
+     * @dataProvider dpNumbersAndFizzAndBuzzAndFizzBuzz
+     * @depends testFizzBuzzSubstitution
+     */
+    public function testFizzBuzzSubstitutionThroughCall($number, $expect)
+    {
+        $subject = new Number($number);
+
+        $this->assertSame($expect, $subject(), 'Substitution through call does not work.');
+    }
 }
