@@ -4,7 +4,15 @@ namespace Standard\View;
 
 class Viewmodel implements ViewmodelInterface
 {
+    /**
+     * @var array
+     */
     private $data = [];
+
+    /**
+     * @var string
+     */
+    private $scriptname;
 
     /**
      * @param $key
@@ -21,5 +29,21 @@ class Viewmodel implements ViewmodelInterface
     public function get($key)
     {
         return $this->data[$key];
+    }
+
+    /**
+     * @param string $scriptname
+     */
+    public function setScriptname($scriptname)
+    {
+        $this->scriptname = $scriptname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getScriptname()
+    {
+        return $this->scriptname;
     }
 }

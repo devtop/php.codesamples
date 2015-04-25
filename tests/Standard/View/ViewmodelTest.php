@@ -29,4 +29,26 @@ class ViewmodelTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($data, $testModel->get($key), 'Viewmodel does not return inserted structure.');
     }
 
+    /**
+     * @return array
+     */
+    public function dpProperScriptnames()
+    {
+        return [
+            ['tasks/fizzbuzz'],
+            ['test/test'],
+        ];
+    }
+
+    /**
+     * @param $scriptname
+     * @dataProvider dpProperScriptnames
+     */
+    public function testSetAndGetScriptname($scriptname)
+    {
+        $viewmodel = new Viewmodel();
+
+        $viewmodel->setScriptname($scriptname);
+        $this->assertSame($scriptname, $viewmodel->getScriptname(), 'Viewmodel does not return inserted scrriptname.');
+    }
 }
