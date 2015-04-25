@@ -3,7 +3,7 @@
 namespace Standard\View;
 
 
-interface ModelInterface
+interface ViewmodelInterface
 {
 
 }

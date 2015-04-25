@@ -3,7 +3,7 @@
 namespace Standard\View;
 
 
-class ModelTest extends \PHPUnit_Framework_TestCase
+class ViewmodelTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @return array
@@ -23,10 +23,10 @@ class ModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testWriteAndReadData($key, $data)
     {
-        $testModel = new Model();
+        $testModel = new Viewmodel();
         $testModel->set($key, $data);
 
-        $this->assertSame($data, $testModel->get($key), 'Model does not return inserted structure.');
+        $this->assertSame($data, $testModel->get($key), 'Viewmodel does not return inserted structure.');
     }
 
 }

@@ -10,19 +10,18 @@ class RendererHttp implements Renderer
     private $view;
 
     /**
-     * @param ModelInterface $view
+     * @param ViewmodelInterface $view
      */
-    public function setView(ModelInterface $view)
+    public function setView(ViewmodelInterface $view)
     {
         $this->view = $view;
     }
 
     /**
-     * @return Model
+     * @return Viewmodel
      */
     public function getView()
     {
-
         return $this->view;
     }
 }

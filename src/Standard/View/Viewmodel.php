@@ -2,7 +2,7 @@
 namespace Standard\View;
 
 
-class Model implements ModelInterface
+class Viewmodel implements ViewmodelInterface
 {
     private $data = [];
 

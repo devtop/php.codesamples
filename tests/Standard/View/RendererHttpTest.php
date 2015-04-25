@@ -9,7 +9,7 @@ class RendererHttpTest extends \PHPUnit_Framework_TestCase
     {
         $renderer = new RendererHttp();
 
-        $viewmodel = new Model();
+        $viewmodel = new Viewmodel();
         $renderer->setView($viewmodel);
         $this->assertSame($viewmodel, $renderer->getView());
     }
