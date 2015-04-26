@@ -3,8 +3,22 @@
 namespace Standard\View;
 
 
+use Standard\View\TestUtility\StandardTemplatemapResolverFactory;
+
 class RendererHttpTest extends \PHPUnit_Framework_TestCase
 {
+
+    /**
+     * @var StandardTemplatemapResolverFactory
+     */
+    private static $standardTemplatemapResolverFactory;
+
+    public static function setUpBeforeClass()
+    {
+        self::$standardTemplatemapResolverFactory = new StandardTemplatemapResolverFactory();
+        parent::setUpBeforeClass();
+    }
+
     /**
      *
      */
@@ -29,5 +43,44 @@ class RendererHttpTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($resolver, $renderer->getViewscriptResolver(), 'Renderer does not return ViewscriptResolver');
     }
 
+    /**
+     * @return array
+     */
+    public function dpPlainTextFileCandidates()
+    {
+        $testCases = [];
 
+        $viewmodel = new Viewmodel();
+        $viewmodel->setScriptname('test');
+        $testCases[] = [$viewmodel, 'lorem ipsum dolor'];
+
+        $viewmodel = new Viewmodel();
+        $viewmodel->setScriptname('view/standard/layout');
+        $testCases[] = [$viewmodel, 'layout'];
+
+        return $testCases;
+    }
+
+    /**
+     * @param string $scripname
+     * @param $expectedResult
+     * @dataProvider dpPlainTextFileCandidates
+     * @dependss testSetAndGetViewscriptResolver
+     * @dependss testSetAndGetViewmodel
+     * depends TemplatemapResolverTest::testResolverProvidesPathtToIncludableScript
+     * depends ViewmodelTest::testSetAndGetScriptname
+     */
+    public function testRenderReturnsContentOfPlainTextFile(Viewmodel $viewmodel, $expectedResult)
+    {
+        $renderer = new RendererHttp();
+        $renderer->setViewscriptResolver($this->getStandardTemplatemapResolver());
+
+        $renderer->setView($viewmodel);
+        $this->assertSame($expectedResult, $renderer->render(), 'Result of rendering is not as excpected.');
+    }
+
+    private function getStandardTemplatemapResolver()
+    {
+        return self::$standardTemplatemapResolverFactory->createService();
+    }
 }

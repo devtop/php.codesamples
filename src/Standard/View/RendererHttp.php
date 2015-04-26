@@ -52,7 +52,16 @@ class RendererHttp implements Renderer
      */
     public function render()
     {
-        return '';
+        ob_start();
+        $this->doRender();
+        return ob_get_clean();;
+    }
 
+    /**
+     *
+     */
+    private function doRender()
+    {
+        include $this->viewscriptResolver->getScript($this->view->getScriptname());
     }
 }
