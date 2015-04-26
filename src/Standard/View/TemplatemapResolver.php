@@ -24,4 +24,20 @@ class TemplatemapResolver implements ViewscriptResolverInterface
     {
         return $this->templatemap;
     }
+
+    /**
+     * Checks if scriptname is valid and script exists
+     * @param string $scriptname
+     */
+    public function isScript($scriptname)
+    {
+        if (!isset($this->templatemap[$scriptname])) {
+            return false;
+        }
+        $file = $this->templatemap[$scriptname];
+        if (!is_readable($file)){
+            return false;
+        }
+        return true;
+    }
 }
