@@ -65,12 +65,46 @@ class RendererHttpTest extends \PHPUnit_Framework_TestCase
      * @param string $scripname
      * @param $expectedResult
      * @dataProvider dpPlainTextFileCandidates
-     * @dependss testSetAndGetViewscriptResolver
-     * @dependss testSetAndGetViewmodel
+     * @depends testSetAndGetViewscriptResolver
+     * @depends testSetAndGetViewmodel
      * depends TemplatemapResolverTest::testResolverProvidesPathtToIncludableScript
      * depends ViewmodelTest::testSetAndGetScriptname
      */
     public function testRenderReturnsContentOfPlainTextFile(Viewmodel $viewmodel, $expectedResult)
+    {
+        $renderer = new RendererHttp();
+        $renderer->setViewscriptResolver($this->getStandardTemplatemapResolver());
+
+        $renderer->setView($viewmodel);
+        $this->assertSame($expectedResult, $renderer->render(), 'Result of rendering is not as excpected.');
+    }
+
+    /**
+     * @return array
+     */
+    public function dpSimplePhpCandidates()
+    {
+        $testCases = [];
+
+        $viewmodel = new Viewmodel();
+        $viewmodel->setScriptname('first/echo');
+        $testCases[] = [$viewmodel, 'Hello World!'];
+
+        $viewmodel = new Viewmodel();
+        $viewmodel->set('works', 'It works!');
+        $viewmodel->setScriptname('mini/html');
+        $testCases[] = [$viewmodel, '<html><body>It works!</body></html>'];
+
+        return $testCases;
+    }
+
+    /**
+     * @param string $scripname
+     * @param $expectedResult
+     * @dataProvider dpSimplePhpCandidates
+     * @depends testRenderReturnsContentOfPlainTextFile
+     */
+    public function testRenderReturnsContentOfSimplePhpFile(Viewmodel $viewmodel, $expectedResult)
     {
         $renderer = new RendererHttp();
         $renderer->setViewscriptResolver($this->getStandardTemplatemapResolver());
