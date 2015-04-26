@@ -5,9 +5,31 @@ namespace Standard\View;
 class RendererHttp implements Renderer
 {
     /**
-     * @var
+     * @var ViewmodelInterface
      */
     private $view;
+
+    /**
+     * @var ViewscriptResolverInterface
+
+     */
+    private $viewscriptResolver;
+
+    /**
+     * @param ViewscriptResolverInterface $resolver
+     */
+    public function setViewscriptResolver(ViewscriptResolverInterface $resolver)
+    {
+        $this->viewscriptResolver = $resolver;
+    }
+
+    /**
+     * @return ViewscriptResolverInterface
+     */
+    public function getViewscriptResolver()
+    {
+        return $this->viewscriptResolver;
+    }
 
     /**
      * @param ViewmodelInterface $view
