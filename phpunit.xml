@@ -1,4 +1,4 @@
-<phpunit bootstrap="src/autoload.php" colors="true">
+<phpunit bootstrap="tests/autoload.php" colors="true">
     <testsuites>
         <testsuite name="PHP Code Samples by Tobias Ranft">
             <directory>tests</directory>

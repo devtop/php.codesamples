@@ -2,8 +2,21 @@
 namespace Standard\View;
 
 
+use Standard\View\TestUtility\StandardTemplatemapResolverFactory;
+
 class TemplatemapResolverTest extends \PHPUnit_Framework_TestCase
 {
+
+    /**
+     * @var StandardTemplatemapResolverFactory
+     */
+    private static $standardTemplatemapResolverFactory;
+
+    public static function setUpBeforeClass()
+    {
+        self::$standardTemplatemapResolverFactory = new StandardTemplatemapResolverFactory();
+        parent::setUpBeforeClass();
+    }
 
     /**
      * @return array
@@ -12,7 +25,7 @@ class TemplatemapResolverTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [['test' => __DIR__.'/data/test.phtml']],
-            [$this->getStandardTemplatemap()],
+            [StandardTemplatemapResolverFactory::getStandardTemplatemap()],
             [[]],
         ];
     }
@@ -132,24 +145,10 @@ class TemplatemapResolverTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return array
-     */
-    private function getStandardTemplatemap()
-    {
-        return [
-            'test' => __DIR__.'/data/test.phtml',
-            'view/standard/layout' => __DIR__.'/data/layout.phtml',
-            'file/not/exists' => __DIR__.'/data/filenotexists.phtml',
-        ];
-    }
-
-    /**
      * @return TemplatemapResolver
      */
     private function getStandardTemplatemapResolver()
     {
-        $resolver = new TemplatemapResolver();
-        $resolver->setTemplatemap($this->getStandardTemplatemap());
-        return $resolver;
+        return self::$standardTemplatemapResolverFactory->createService();
     }
 }

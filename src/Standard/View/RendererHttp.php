@@ -46,4 +46,13 @@ class RendererHttp implements Renderer
     {
         return $this->view;
     }
+
+    /**
+     * @return string
+     */
+    public function render()
+    {
+        return '';
+
+    }
 }
