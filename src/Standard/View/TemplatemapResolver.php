@@ -44,9 +44,13 @@ class TemplatemapResolver implements ViewscriptResolverInterface
     /**
      * @param $scriptname
      * @return string
+     * @throws RuntimeException
      */
     public function getScript($scriptname)
     {
+        if (!$this->isScript($scriptname)) {
+            throw new RuntimeException('Scriptname '. $scriptname . ' is not valid.');
+        }
         return $this->templatemap[$scriptname];
     }
 }

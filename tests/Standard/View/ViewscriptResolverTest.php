@@ -40,8 +40,6 @@ class TemplatemapResolverTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
-
-
     /**
      * @param string $scriptname
      * @depends testSetAndGetTemplatemap
@@ -87,7 +85,7 @@ class TemplatemapResolverTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param $scriptname
+     * @param string $scriptname
      * @depends testSetAndGetTemplatemap
      * @dataProvider dpNotExistingScriptFile
      */
@@ -98,7 +96,7 @@ class TemplatemapResolverTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param $scriptname
+     * @param string $scriptname
      * @depends testSetAndGetTemplatemap
      * @dataProvider dpExistingScriptnames
      */
@@ -107,6 +105,30 @@ class TemplatemapResolverTest extends \PHPUnit_Framework_TestCase
         $resolver = $this->getStandardTemplatemapResolver();
         $file = $resolver->getScript($scriptname);
         $this->assertFileExists($file, "Script $file should exist");
+    }
+
+    /**
+     * @param string $scriptname
+     * @depends testSetAndGetTemplatemap
+     * @dataProvider dpInvalidScriptnames
+     * @expectedException RuntimeException
+     */
+    public function testExceptionThrowWhenResolvingNotExistingScriptnameEntry($sciptname)
+    {
+        $resolver = $this->getStandardTemplatemapResolver();
+        $resolver->getScript($sciptname);
+    }
+
+    /**
+     * @param string $scriptname
+     * @depends testSetAndGetTemplatemap
+     * @dataProvider dpNotExistingScriptFile
+     * @expectedException RuntimeException
+     */
+    public function testExceptionThrowWhenResolvingNotExistingScriptFile($sciptname)
+    {
+        $resolver = $this->getStandardTemplatemapResolver();
+        $resolver->getScript($sciptname);
     }
 
     /**
