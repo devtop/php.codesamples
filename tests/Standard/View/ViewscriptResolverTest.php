@@ -98,6 +98,18 @@ class TemplatemapResolverTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @param $scriptname
+     * @depends testSetAndGetTemplatemap
+     * @dataProvider dpExistingScriptnames
+     */
+    public function testResolverProvidesPathtToIncludableScript($scriptname)
+    {
+        $resolver = $this->getStandardTemplatemapResolver();
+        $file = $resolver->getScript($scriptname);
+        $this->assertFileExists($file, "Script $file should exist");
+    }
+
+    /**
      * @return array
      */
     private function getStandardTemplatemap()

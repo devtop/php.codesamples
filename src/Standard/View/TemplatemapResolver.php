@@ -40,4 +40,13 @@ class TemplatemapResolver implements ViewscriptResolverInterface
         }
         return true;
     }
+
+    /**
+     * @param $scriptname
+     * @return string
+     */
+    public function getScript($scriptname)
+    {
+        return $this->templatemap[$scriptname];
+    }
 }
