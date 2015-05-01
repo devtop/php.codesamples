@@ -5,7 +5,7 @@ namespace Standard\View;
 
 use Standard\View\TestUtility\StandardTemplatemapResolverFactory;
 
-class RendererHttpTest extends \PHPUnit_Framework_TestCase
+class RendererPhpTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -24,7 +24,7 @@ class RendererHttpTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetAndGetViewmodel()
     {
-        $renderer = new RendererHttp();
+        $renderer = new RendererPhp();
 
         $viewmodel = new Viewmodel();
         $renderer->setView($viewmodel);
@@ -36,7 +36,7 @@ class RendererHttpTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetAndGetViewscriptResolver()
     {
-        $renderer = new RendererHttp();
+        $renderer = new RendererPhp();
         $resolver = new TemplatemapResolver();
 
         $renderer->setViewscriptResolver($resolver);
@@ -72,7 +72,7 @@ class RendererHttpTest extends \PHPUnit_Framework_TestCase
      */
     public function testRenderReturnsContentOfPlainTextFile(Viewmodel $viewmodel, $expectedResult)
     {
-        $renderer = new RendererHttp();
+        $renderer = new RendererPhp();
         $renderer->setViewscriptResolver($this->getStandardTemplatemapResolver());
 
         $renderer->setView($viewmodel);
@@ -106,7 +106,7 @@ class RendererHttpTest extends \PHPUnit_Framework_TestCase
      */
     public function testRenderReturnsContentOfSimplePhpFile(Viewmodel $viewmodel, $expectedResult)
     {
-        $renderer = new RendererHttp();
+        $renderer = new RendererPhp();
         $renderer->setViewscriptResolver($this->getStandardTemplatemapResolver());
 
         $renderer->setView($viewmodel);
@@ -117,4 +117,10 @@ class RendererHttpTest extends \PHPUnit_Framework_TestCase
     {
         return self::$standardTemplatemapResolverFactory->createService();
     }
+
+    public function test()
+    {
+    }
+
+
 }

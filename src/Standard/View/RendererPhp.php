@@ -2,7 +2,7 @@
 namespace Standard\View;
 
 
-class RendererHttp implements Renderer
+class RendererPhp implements Renderer
 {
     /**
      * @var ViewmodelInterface
