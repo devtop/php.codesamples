@@ -2,6 +2,10 @@
 namespace Standard\View;
 
 
+/**
+ * Class RendererPhp
+ * @package Standard\View
+ */
 class RendererPhp implements Renderer
 {
     /**
@@ -10,10 +14,25 @@ class RendererPhp implements Renderer
     private $view;
 
     /**
+     * @var ViewmodelInterface
+     */
+    private $layout;
+
+    /**
      * @var ViewscriptResolverInterface
 
      */
     private $viewscriptResolver;
+
+    /**
+     * @param ViewmodelInterface $viewmodel
+     */
+    public function __construct(ViewmodelInterface $viewmodel, ViewscriptResolverInterface $resolver)
+    {
+        $this->setViewmodel($viewmodel);
+        $this->setViewscriptResolver($resolver);
+        return $this;
+    }
 
     /**
      * @param ViewscriptResolverInterface $resolver
@@ -34,7 +53,7 @@ class RendererPhp implements Renderer
     /**
      * @param ViewmodelInterface $view
      */
-    public function setView(ViewmodelInterface $view)
+    public function setViewmodel(ViewmodelInterface $view)
     {
         $this->view = $view;
     }
@@ -62,6 +81,14 @@ class RendererPhp implements Renderer
      */
     private function doRender()
     {
-        include $this->viewscriptResolver->getScript($this->view->getScriptname());
+        include $this->viewscriptResolver->getScript($this->getScriptname());
+    }
+
+    /**
+     * @return mixed
+     */
+    private function getScriptname()
+    {
+        return $this->view->getScriptname();
     }
 }

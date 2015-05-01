@@ -22,13 +22,38 @@ class RendererPhpTest extends \PHPUnit_Framework_TestCase
     /**
      *
      */
+    public function testSetViewmodelCanBeSetByConstructor()
+    {
+        $viewmodel = new Viewmodel();
+        $renderer = new RendererPhp($viewmodel, $this->getStandardTemplatemapResolver());
+        $this->assertSame($viewmodel, $renderer->getView(), 'Renderer does not return Viewmodel set by constructor');
+    }
+
+    /**
+     *
+     */
     public function testSetAndGetViewmodel()
     {
-        $renderer = new RendererPhp();
+        $renderer = new RendererPhp(new Viewmodel(), $this->getStandardTemplatemapResolver());
 
         $viewmodel = new Viewmodel();
-        $renderer->setView($viewmodel);
+        $renderer->setViewmodel($viewmodel);
         $this->assertSame($viewmodel, $renderer->getView(), 'Renderer does not return viewmodel, that was set.');
+    }
+
+    /**
+     *
+     */
+    public function testSetViewscriptResolverByConstructor()
+    {
+        $viewscriptResolver = $this->getStandardTemplatemapResolver();
+
+        $renderer = new RendererPhp(new Viewmodel(), $viewscriptResolver);
+        $this->assertSame(
+            $viewscriptResolver,
+            $renderer->getViewscriptResolver(),
+            'Renderer does not return viewscriptResolver set by constructor'
+        );
     }
 
     /**
@@ -36,12 +61,13 @@ class RendererPhpTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetAndGetViewscriptResolver()
     {
-        $renderer = new RendererPhp();
+        $renderer = new RendererPhp(new Viewmodel(), $this->getStandardTemplatemapResolver());
         $resolver = new TemplatemapResolver();
 
         $renderer->setViewscriptResolver($resolver);
         $this->assertSame($resolver, $renderer->getViewscriptResolver(), 'Renderer does not return ViewscriptResolver');
     }
+
 
     /**
      * @return array
@@ -72,10 +98,9 @@ class RendererPhpTest extends \PHPUnit_Framework_TestCase
      */
     public function testRenderReturnsContentOfPlainTextFile(Viewmodel $viewmodel, $expectedResult)
     {
-        $renderer = new RendererPhp();
-        $renderer->setViewscriptResolver($this->getStandardTemplatemapResolver());
+        $renderer = $this->getStandardRenderer();
 
-        $renderer->setView($viewmodel);
+        $renderer->setViewmodel($viewmodel);
         $this->assertSame($expectedResult, $renderer->render(), 'Result of rendering is not as excpected.');
     }
 
@@ -106,21 +131,28 @@ class RendererPhpTest extends \PHPUnit_Framework_TestCase
      */
     public function testRenderReturnsContentOfSimplePhpFile(Viewmodel $viewmodel, $expectedResult)
     {
-        $renderer = new RendererPhp();
-        $renderer->setViewscriptResolver($this->getStandardTemplatemapResolver());
+        $renderer = $this->getStandardRenderer();
 
-        $renderer->setView($viewmodel);
+        $renderer->setViewmodel($viewmodel);
         $this->assertSame($expectedResult, $renderer->render(), 'Result of rendering is not as excpected.');
     }
 
+    /**
+     * @return TemplatemapResolver
+     */
     private function getStandardTemplatemapResolver()
     {
         return self::$standardTemplatemapResolverFactory->createService();
     }
 
-    public function test()
+    /**
+     * @return RendererPhp
+     */
+    private function getStandardRenderer()
     {
+        $renderer = new RendererPhp(new Viewmodel(), $this->getStandardTemplatemapResolver());
+        $renderer->setViewscriptResolver($this->getStandardTemplatemapResolver());
+        return $renderer;
     }
-
 
 }
