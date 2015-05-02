@@ -1,7 +1,7 @@
 <?php
 
 $layout = new \Standard\View\Viewmodel();
-$layout->setScriptname('layout/standard');
+$layout->setScriptname('layout/standard_offline');
 
 $viewmodel = new \Standard\View\Viewmodel();
 $viewmodel->setScriptname('task/fizzbuzz');
