@@ -1,7 +1,8 @@
 <?php
-
+/**
+ * Created by Tobias Ranft <coded@ranft.biz> 2015
+ */
 namespace Standard\View;
-
 
 use Standard\View\TestUtility\StandardTemplatemapResolverFactory;
 

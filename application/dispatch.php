@@ -1,4 +1,7 @@
 <?php
+/**
+ * Created by Tobias Ranft <coded@ranft.biz> 2015
+ */
 
 $layout = new \Standard\View\Viewmodel();
 $layout->setScriptname('layout/standard_offline');
