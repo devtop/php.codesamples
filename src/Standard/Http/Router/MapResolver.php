@@ -14,17 +14,22 @@ class MapResolver implements ResolverInterface
     private $map = [];
 
     /**
+     * @var bool
+     */
+    private $strictMode = false;
+
+    /**
      * @param string $url
      * @return string|null
      */
     public function resolveUrl($url)
     {
-        foreach ($this->map as $routeId=>$routeUrl) {
-            if (strpos($url, $routeUrl)===0){
-                return $routeId;
-            }
+        if ($this->strictMode) {
+            return $this->matchUrlStrict($url);
         }
-        return null;
+        else {
+            return $this->matchUrl($url);
+        }
     }
 
     /**
@@ -33,7 +38,6 @@ class MapResolver implements ResolverInterface
     public function setMap(array $map)
     {
         $this->map = $map;
-
     }
 
     /**
@@ -42,5 +46,55 @@ class MapResolver implements ResolverInterface
     public function getMap()
     {
         return $this->map;
+    }
+
+    /**
+     * @param bool $useStrict
+     */
+    public function setOptionStrict($useStrict)
+    {
+        $this->strictMode = (bool)$useStrict;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getOptionStrict()
+    {
+        return $this->strictMode;
+    }
+
+    /**
+     * @param string $url
+     * @return null|string
+     */
+    private function matchUrl($url)
+    {
+        foreach ($this->map as $routeId => $routeUrl) {
+            if ($url === $routeUrl) {
+                return $routeId;
+            }
+            elseif (strpos($url, $routeUrl.'/') === 0) {
+                return $routeId;
+            }
+            elseif (strpos($url, $routeUrl.'?') === 0) {
+                return $routeId;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @param string $url
+     * @return null|string
+     */
+    private function matchUrlStrict($url)
+    {
+        foreach ($this->map as $routeId => $routeUrl) {
+            if ($url === $routeUrl) {
+                return $routeId;
+            }
+        }
+        return null;
     }
 }

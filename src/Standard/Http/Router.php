@@ -33,4 +33,9 @@ class Router
     {
         return $this->resolverChain[$id];
     }
+
+    public function getRoutMatch($url)
+    {
+
+    }
 }

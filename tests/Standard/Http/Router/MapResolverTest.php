@@ -87,18 +87,128 @@ class MapResolverTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expect, $resolver->resolveUrl($url), 'Resolver does not resolve Url correctly.');
     }
 
+    public function testStrictModeCanBeSet()
+    {
+        $resover = $this->resolver;
+        $resover->setOptionStrict(true);
+        $resover->setOptionStrict(false);
+    }
+
+    public function testStrictModeCanBeGet()
+    {
+        $resolver = $this->resolver;
+        $resolver->getOptionStrict();
+    }
+
+    public function testStrictModeIsDefaultOff()
+    {
+        $resolver = $this->resolver;
+        $this->assertFalse($resolver->getOptionStrict(), 'Strict mode is not off as default.');
+    }
+
+    /**
+     * @return array
+     */
+    public function dpSomeStrictModes()
+    {
+        return [
+            [true, true],
+            [false, false],
+            [0, false],
+            [1, true],
+        ];
+    }
+
+    /**
+     * @param bool $mode
+     * @dataProvider dpSomeStrictModes
+     * @depends testStrictModeCanBeSet
+     */
+    public function testSetAndGetStrictMode($mode, $expect)
+    {
+        $resolver = $this->resolver;
+        $resolver->setOptionStrict($mode);
+        $this->assertSame($expect, $resolver->getOptionStrict(), 'Resolver does not return set strict mode.');
+    }
+
+    /**
+     * @return array
+     */
+    public function dpPostpendedUrls()
+    {
+        $customMap = $this->getCustomTestMap();
+        $mapper = function ($routeId, $routeUrl) {
+            return [$routeUrl.'/some/pospended/stuff', $routeId];
+        };
+        return array_map($mapper, array_keys($customMap), array_values($customMap));
+    }
+
     /**
      * @param $url
      * @param $expect
      * @dpends testUrlResolverResolvesKnownUrl
-     * @dataProvider dpKnownUrls
+     * @dpends testStrictModeIsDefaultOff
+     * @dataProvider dpPostpendedUrls
      */
     public function testUrlCanBePostpendedWithAnything($url, $expect)
     {
         $resolver = $this->resolver;
         $resolver->setMap($this->getCustomTestMap());
-        $url .= '/some/stuff';
         $this->assertSame($expect, $resolver->resolveUrl($url), 'Resolver is irritated by postpended stuff.');
+    }
+
+    /**
+     * @return array
+     */
+    public function dpWrongPostpendedUrls()
+    {
+        $customMap = $this->getCustomTestMap();
+        $mapper = function ($routeUrl) {
+            return [$routeUrl.'some/pospended/stuff'];
+        };
+        return array_map($mapper, array_values($customMap));
+    }
+
+    /**
+     * @param string $url
+     * @param $expect
+     * @dataProvider dpWrongPostpendedUrls
+     * @depends testUrlCanBePostpendedWithAnything
+     */
+    public function testUrlMustBePostpendedCorrectly($url, $expect)
+    {
+        $resolver = $this->resolver;
+        $resolver->setMap($this->getCustomTestMap());
+        $this->assertNull($resolver->resolveUrl($url), 'Resolver matches Url that should not be matched.');
+    }
+    /**
+     * @param $url
+     * @param $expect
+     * @depends testUrlResolverResolvesKnownUrl
+     * @depends testSetAndGetStrictMode
+     * @dataProvider dpKnownUrls
+     */
+    public function testStrictModeMatchesBeginOfUrl($url, $expect)
+    {
+        $resolver = $this->resolver;
+        $resolver->setMap($this->getCustomTestMap());
+        $resolver->setOptionStrict(true);
+        $this->assertSame($expect, $resolver->resolveUrl($url), 'Resolver does not resolve Url correctly.');
+    }
+
+    /**
+     * @param $url
+     * @param $expect
+     * @depends testUrlResolverResolvesKnownUrl
+     * @depends testSetAndGetStrictMode
+     * @dataProvider dpPostpendedUrls
+     */
+    public function testStrictModeMatchesOnlyBeginOfUrl($url, $expect)
+    {
+        $resolver = $this->resolver;
+        $resolver->setMap($this->getCustomTestMap());
+        $resolver->setOptionStrict(true);
+        $this->assertNull($resolver->resolveUrl($url), 'Resolver does not resolve Url correctly.');
     }
 
     /**
