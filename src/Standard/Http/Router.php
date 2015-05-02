@@ -47,6 +47,5 @@ class Router
             }
         }
         return null;
-
     }
 }
