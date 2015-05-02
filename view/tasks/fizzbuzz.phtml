@@ -1,13 +1,22 @@
-<pre>
-<?php
+<h1>OOP implementation of Fizz Buzz</h1>
+<div>
+    The task is to count in a specific way.
+    Start by one, two, etc.
+    For a number that can be divided by three say "Fizz".
+    For a number that can be divided by five say "Buzz".
+    For a number that can be divided by three and by five say "Fizz Buzz".
+</div>
+<div>
+    <pre><?php
+        
+    $number = new \Task\FizzBuzz\Number();
 
-$number = new \Task\FizzBuzz\Number();
+    for ($i=1; $i<=100; $i++)
+    {
+        $number->set($i);
+        echo $number->getNumber().' => '.$number->get(). "\n";
+    }
 
-for ($i=1; $i<=100; $i++)
-{
-    $number->set($i);
-    echo $number->getNumber().' => '.$number->get(). "\n";
-}
-
-?>
-</pre>
+    ?>
+    </pre>
+</div>
