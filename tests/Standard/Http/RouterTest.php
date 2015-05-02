@@ -61,11 +61,46 @@ class RouterTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($resolver, $router->getResolver($id), 'Router does not return injected resolver.');
     }
 
+    public function testCallRouteMatch()
+    {
+        $router = $this->router;
+        $router->getRoutMatch('/Some/simpson/stuff');
+    }
+
+    /**
+     * @depends testCallRouteMatch
+     */
+    public function testRouteMatchDoesNotMatchOnUnknownUrl()
+    {
+        $router = $this->router;
+        $this->assertNull($router->getRoutMatch('/some/unknow/beef'));
+    }
+
+    /**
+     * @depends testRouteMatchDoesNotMatchOnUnknownUrl
+     */
+    public function testRouteMatchMatchesOnUrl()
+    {
+        $router = $this->router;
+        $router->addResolver($this->createCustomMapResolver());
+        $this->assertSame('test1', $router->getRoutMatch('/url/to/test1'));
+    }
+
     /**
      * @return MapResolver
      */
     private function createResolverMock()
     {
         return new MapResolver();
+    }
+
+    /**
+     * @return MapResolver
+     */
+    private function createCustomMapResolver()
+    {
+        $resolver = new MapResolver();
+        $resolver->setMap(['test1' => '/url/to/test1']);
+        return $resolver;
     }
 }

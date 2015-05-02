@@ -34,8 +34,19 @@ class Router
         return $this->resolverChain[$id];
     }
 
+    /**
+     * @param string $url
+     * @return string
+     */
     public function getRoutMatch($url)
     {
+        foreach ($this->resolverChain as $resolver) {
+            $match = $resolver->resolveUrl($url);
+            if ($match !== null) {
+                return $match;
+            }
+        }
+        return null;
 
     }
 }
