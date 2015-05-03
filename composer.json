@@ -3,5 +3,8 @@
   "description": "Some interesting php code samples made by Tobias Ranft",
   "require": {
     "php": ">=5.4"
+  },
+  "require-dev": {
+    "phpspec/prophecy": "~1.0"
   }
 }
