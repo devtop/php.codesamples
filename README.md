@@ -13,8 +13,8 @@ For more information see the [details](https://github.com/devtop/php.codesamples
 ### Fizz Buzz
 The litte finger excercise every coder knows. 
 The goal is to count, but leave out some numbers.
-My (solution)[https://github.com/devtop/php.codesamples/blob/master/view/tasks/fizzbuzz.phtml] 
-the (OOP way)[https://github.com/devtop/php.codesamples/blob/master/src/Task/FizzBuzz/Number.php].
+My [solution](https://github.com/devtop/php.codesamples/blob/master/view/tasks/fizzbuzz.phtml) 
+the [OOP way](https://github.com/devtop/php.codesamples/blob/master/src/Task/FizzBuzz/Number.php).
 
 Not serious to solve it in OOP, but it was on my bucket list. 
 
