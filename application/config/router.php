@@ -5,4 +5,5 @@
 
 return [
     'task/fizzbuzz' => '/fizzbuzz',
+    'task/coffeebar' => '/coffeebar',
 ];
