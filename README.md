@@ -24,7 +24,7 @@ Not serious to solve it in OOP, but it was on my bucket list.
 $ git clone git@github.com:devtop/php.codesamples.git
 ```
 ### Setup apache
-You'll need to have installed apache2 and php>=5.4 .
+You'll need to have apache2 and php>=5.4 .
 ```
 <VirtualHost *:80>
     ServerName php.codesamples
