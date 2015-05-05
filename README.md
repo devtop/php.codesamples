@@ -54,6 +54,9 @@ $ ./setup/run.docker.sh
 Then you can get projects result at http://localhost:81/ .
 
 ## What's coming soon?
+### Under construction
+* Coffeebar
+
 ### Open Tasks
 * Route Match Object
 * Unhandled edgecases in router
@@ -65,7 +68,6 @@ Then you can get projects result at http://localhost:81/ .
 * Multiple URL for one route
 
 ### Roadmap
-* Coffeebar
 * Prime numbers with regex
 * Sequence Problem
 
