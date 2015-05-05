@@ -76,4 +76,5 @@ The js- and css-library stuff is not originated by me.
 I use Twitter Bootstrap and jQuery to fresh the design up.
 
 ## Where is the source?
-Source code can be found on [github.com](https://github.com/devtop/php.codesamples)
+Source code can be found on [github.com](https://github.com/devtop/php.codesamples).
+It' free to use in other contexts.
