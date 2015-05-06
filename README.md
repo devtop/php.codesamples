@@ -9,7 +9,7 @@ And don't hesitate to contact me for any kind of request.
 
 ## What's already done?
 ### Tiny Framework
-It's just some compoments I needed to publish this as a php application site.
+It's just some components I needed to publish this as a php application site.
 For more information see the [details](https://github.com/devtop/php.codesamples/tree/master/src/Standard)
 
 ### Fizz Buzz
