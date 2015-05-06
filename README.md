@@ -1,6 +1,7 @@
 # php.codesamples
 Some interesting code samples made by Tobias Ranft 2015.
 You can see the result at [phpcodesamples.ranft.biz](http://phpcodesamples.ranft.biz). 
+The whole project is continuously integrated and deployed.
 
 ## Maybe you want to hire me?
 Have a look at my [CV](http://ranft.biz/cv/cv_en.php). 
