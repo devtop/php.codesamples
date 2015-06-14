@@ -1,7 +1,9 @@
 # php.codesamples
 Some interesting code samples made by Tobias Ranft 2015.
-You can see the result at [phpcodesamples.ranft.biz](http://phpcodesamples.ranft.biz). 
-The whole project is continuously integrated and deployed.
+You can see the result at . 
+The whole project is continuously integrated with [codeship.io](https://codeship.com/projects/75333) and deployed to [phpcodesamples.ranft.biz](http://phpcodesamples.ranft.biz).
+
+[ ![Codeship Status for devtop/php.codesamples](https://codeship.com/projects/2e5f54a0-c9be-0132-efe0-76c03995407a/status?branch=master)](https://codeship.com/projects/75333)
 
 ## Maybe you want to hire me?
 Have a look at my [CV](http://ranft.biz/cv/cv_en.php). 
