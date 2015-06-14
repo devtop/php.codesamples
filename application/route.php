@@ -18,6 +18,7 @@ $routeMatch = $router->getRouteMatch($_SERVER['REQUEST_URI']);
 
 if ($routeMatch === null) {
     header("HTTP/1.0 404 Not Found");
+    echo "Sorry, page not found.";
     exit;
 }
 

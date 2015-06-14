@@ -74,6 +74,9 @@ Then you can get projects result at http://localhost:81/ .
 * Prime numbers with regex
 * Sequence Problem
 
+### Done
+* Simple request time measurement
+
 ## Disclaimer
 The js- and css-library stuff is not originated by me.
 I use Twitter Bootstrap and jQuery to fresh the design up.

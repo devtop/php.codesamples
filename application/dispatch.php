@@ -5,6 +5,7 @@
 
 $layout = new \Standard\View\ViewModel();
 $layout->setScriptname('layout/standard_offline');
+$layout->set('runtime', isset($stopwatch) ? $stopwatch : 'unknown');
 
 $viewmodel = new \Standard\View\ViewModel();
 $viewmodel->setScriptname($routeMatch);
