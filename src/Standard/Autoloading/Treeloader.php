@@ -6,10 +6,6 @@ namespace Standard\Autoloading;
 
 require_once __DIR__.'/StaticRegisterInterface.php';
 
-/**
- * Class Treeloader
- * @package Standard\Autoloading
- */
 class Treeloader implements StaticRegisterInterface
 {
     private $rootPath;

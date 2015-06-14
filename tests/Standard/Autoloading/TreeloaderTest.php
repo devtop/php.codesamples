@@ -4,10 +4,6 @@
  */
 namespace Standard\Autoloading;
 
-/**
- * Class TreeloaderTest
- * @package Standard\Autoloading
- */
 class TreeloaderTest extends \PHPUnit_Framework_TestCase
 {
     const CANDIDATE_CLASSNAME = 'Standard\Autoloading\Treeloader';

@@ -1,11 +1,9 @@
 <?php
-
+/**
+ * Created by Tobias Ranft <coded@ranft.biz> 2015
+ */
 namespace Task\FizzBuzz;
 
-/**
- * Class Number
- * @package Task\FizzBuzz
- */
 class Number
 {
     /**

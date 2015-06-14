@@ -4,10 +4,6 @@
  */
 namespace Standard\Autoloading;
 
-/**
- * Interface StaticRegisterInterface
- * @package Standard\Autoloading
- */
 interface StaticRegisterInterface
 {
     /**

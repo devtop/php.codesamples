@@ -4,10 +4,6 @@
  */
 namespace Standard\View;
 
-/**
- * Class RendererPhp
- * @package Standard\View
- */
 class RendererPhp implements Renderer
 {
     /**
