@@ -4,8 +4,7 @@
  */
 namespace Standard\View;
 
-
 interface RendererInterface
 {
-
+    public function render();
 }
