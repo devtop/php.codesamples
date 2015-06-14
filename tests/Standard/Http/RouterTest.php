@@ -64,7 +64,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase
     public function testCallRouteMatch()
     {
         $router = $this->router;
-        $router->getRoutMatch('/Some/simpson/stuff');
+        $router->getRouteMatch('/Some/simpson/stuff');
     }
 
     /**
@@ -73,7 +73,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase
     public function testRouteMatchDoesNotMatchOnUnknownUrl()
     {
         $router = $this->router;
-        $this->assertNull($router->getRoutMatch('/some/unknow/beef'));
+        $this->assertNull($router->getRouteMatch('/some/unknow/beef'));
     }
 
     /**
@@ -83,7 +83,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase
     {
         $router = $this->router;
         $router->addResolver($this->createCustomMapResolver());
-        $this->assertSame('test1', $router->getRoutMatch('/url/to/test1'));
+        $this->assertSame('test1', $router->getRouteMatch('/url/to/test1'));
     }
 
     /**

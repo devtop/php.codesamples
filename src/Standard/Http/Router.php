@@ -34,9 +34,9 @@ class Router
 
     /**
      * @param string $url
-     * @return string
+     * @return string|null
      */
-    public function getRoutMatch($url)
+    public function getRouteMatch($url)
     {
         foreach ($this->resolverChain as $resolver) {
             $match = $resolver->resolveUrl($url);
