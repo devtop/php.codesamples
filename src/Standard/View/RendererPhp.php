@@ -12,11 +12,6 @@ class RendererPhp implements Renderer
     private $view;
 
     /**
-     * @var ViewModelInterface
-     */
-    private $layout;
-
-    /**
      * @var ViewscriptResolverInterface
 
      */
@@ -24,6 +19,7 @@ class RendererPhp implements Renderer
 
     /**
      * @param ViewModelInterface $viewmodel
+     * @param ViewscriptResolverInterface $resolver
      */
     public function __construct(ViewModelInterface $viewmodel, ViewscriptResolverInterface $resolver)
     {
@@ -71,11 +67,11 @@ class RendererPhp implements Renderer
     {
         ob_start();
         $this->doRender();
-        return ob_get_clean();;
+        return ob_get_clean();
     }
 
     /**
-     *
+     * Includes a view template script to render it.
      */
     private function doRender()
     {
@@ -83,7 +79,7 @@ class RendererPhp implements Renderer
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     private function getScriptname()
     {

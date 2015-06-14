@@ -89,7 +89,7 @@ class RendererPhpTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param string $scripname
+     * @param ViewModel $viewmodel
      * @param $expectedResult
      * @dataProvider dpPlainTextFileCandidates
      * @depends testSetAndGetViewscriptResolver
@@ -125,8 +125,8 @@ class RendererPhpTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param string $scripname
-     * @param $expectedResult
+     * @param ViewModel $viewmodel
+     * @param string $expectedResult
      * @dataProvider dpSimplePhpCandidates
      * @depends testRenderReturnsContentOfPlainTextFile
      */

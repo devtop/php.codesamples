@@ -13,7 +13,7 @@ class TemplatemapResolver implements ViewscriptResolverInterface
     private $templatemap = array();
 
     /**
-     * @param array $scriptMap
+     * @param array $templatemap
      */
     public function setTemplatemap(array $templatemap)
     {
@@ -31,6 +31,7 @@ class TemplatemapResolver implements ViewscriptResolverInterface
     /**
      * Checks if scriptname is valid and script exists
      * @param string $scriptname
+     * @return bool
      */
     public function isScript($scriptname)
     {

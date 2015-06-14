@@ -52,7 +52,7 @@ class MapResolverTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param string $unknowUrl
+     * @param string $unknownUrl
      * @dataProvider dpUnknownUrls
      * @debends testInjectUrlIntoResolveUrl
      */
@@ -121,6 +121,7 @@ class MapResolverTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param bool $mode
+     * @param bool $expect
      * @dataProvider dpSomeStrictModes
      * @depends testStrictModeCanBeSet
      */

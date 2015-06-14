@@ -14,11 +14,9 @@ class Router
      */
     private $resolverChain = [];
 
-    private $idCounter = 0;
-
     /**
      * @param ResolverInterface $resolver
-     * @return int
+     * @return int Index of the added resolver
      */
     public function addResolver(ResolverInterface $resolver)
     {

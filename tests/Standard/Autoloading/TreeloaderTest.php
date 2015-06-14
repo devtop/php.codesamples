@@ -53,6 +53,7 @@ class TreeloaderTest extends \PHPUnit_Framework_TestCase
     /**
      * Classes aren't loadable without Treeloader
      * @dataProvider dpTestClasses
+     * @param string $classname
      */
     public function testClassesAreAbsend($classname)
     {
@@ -85,6 +86,7 @@ class TreeloaderTest extends \PHPUnit_Framework_TestCase
      * Switching register, unregister, register works
      * @depends testClassesAreAbsend
      * @dataProvider dpTestClassesNotLoaded
+     * @param string $classname
      */
     public function testSwitchingRegisterUnregisterRegister($classname)
     {
