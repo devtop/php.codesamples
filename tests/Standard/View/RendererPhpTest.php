@@ -20,31 +20,22 @@ class RendererPhpTest extends \PHPUnit_Framework_TestCase
         parent::setUpBeforeClass();
     }
 
-    /**
-     *
-     */
     public function testSetViewmodelCanBeSetByConstructor()
     {
         $viewmodel = new ViewModel();
         $renderer = new RendererPhp($viewmodel, $this->getStandardTemplatemapResolver());
-        $this->assertSame($viewmodel, $renderer->getView(), 'Renderer does not return ViewModel set by constructor');
+        $this->assertSame($viewmodel, $renderer->getView(), 'RendererInterface does not return ViewModel set by constructor');
     }
 
-    /**
-     *
-     */
     public function testSetAndGetViewmodel()
     {
         $renderer = new RendererPhp(new ViewModel(), $this->getStandardTemplatemapResolver());
 
         $viewmodel = new ViewModel();
         $renderer->setViewmodel($viewmodel);
-        $this->assertSame($viewmodel, $renderer->getView(), 'Renderer does not return viewmodel, that was set.');
+        $this->assertSame($viewmodel, $renderer->getView(), 'RendererInterface does not return viewmodel, that was set.');
     }
 
-    /**
-     *
-     */
     public function testSetViewscriptResolverByConstructor()
     {
         $viewscriptResolver = $this->getStandardTemplatemapResolver();
@@ -53,20 +44,17 @@ class RendererPhpTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $viewscriptResolver,
             $renderer->getViewscriptResolver(),
-            'Renderer does not return viewscriptResolver set by constructor'
+            'RendererInterface does not return viewscriptResolver set by constructor'
         );
     }
 
-    /**
-     *
-     */
     public function testSetAndGetViewscriptResolver()
     {
         $renderer = new RendererPhp(new ViewModel(), $this->getStandardTemplatemapResolver());
         $resolver = new TemplatemapResolver();
 
         $renderer->setViewscriptResolver($resolver);
-        $this->assertSame($resolver, $renderer->getViewscriptResolver(), 'Renderer does not return ViewscriptResolver');
+        $this->assertSame($resolver, $renderer->getViewscriptResolver(), 'RendererInterface does not return ViewscriptResolver');
     }
 
 
@@ -147,7 +135,7 @@ class RendererPhpTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return RendererPhp
+     * @return RendererInterfacePhp
      */
     private function getStandardRenderer()
     {

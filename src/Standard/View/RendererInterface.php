@@ -5,7 +5,7 @@
 namespace Standard\View;
 
 
-interface Renderer
+interface RendererInterface
 {
 
 }
