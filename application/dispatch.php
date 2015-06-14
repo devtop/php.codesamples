@@ -3,10 +3,10 @@
  * Created by Tobias Ranft <coded@ranft.biz> 2015
  */
 
-$layout = new \Standard\View\Viewmodel();
+$layout = new \Standard\View\ViewModel();
 $layout->setScriptname('layout/standard_offline');
 
-$viewmodel = new \Standard\View\Viewmodel();
+$viewmodel = new \Standard\View\ViewModel();
 $viewmodel->setScriptname($routeMatch);
 $viewmodel->set('layout', $layout);
 

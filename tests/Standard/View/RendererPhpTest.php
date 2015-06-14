@@ -25,9 +25,9 @@ class RendererPhpTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetViewmodelCanBeSetByConstructor()
     {
-        $viewmodel = new Viewmodel();
+        $viewmodel = new ViewModel();
         $renderer = new RendererPhp($viewmodel, $this->getStandardTemplatemapResolver());
-        $this->assertSame($viewmodel, $renderer->getView(), 'Renderer does not return Viewmodel set by constructor');
+        $this->assertSame($viewmodel, $renderer->getView(), 'Renderer does not return ViewModel set by constructor');
     }
 
     /**
@@ -35,9 +35,9 @@ class RendererPhpTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetAndGetViewmodel()
     {
-        $renderer = new RendererPhp(new Viewmodel(), $this->getStandardTemplatemapResolver());
+        $renderer = new RendererPhp(new ViewModel(), $this->getStandardTemplatemapResolver());
 
-        $viewmodel = new Viewmodel();
+        $viewmodel = new ViewModel();
         $renderer->setViewmodel($viewmodel);
         $this->assertSame($viewmodel, $renderer->getView(), 'Renderer does not return viewmodel, that was set.');
     }
@@ -49,7 +49,7 @@ class RendererPhpTest extends \PHPUnit_Framework_TestCase
     {
         $viewscriptResolver = $this->getStandardTemplatemapResolver();
 
-        $renderer = new RendererPhp(new Viewmodel(), $viewscriptResolver);
+        $renderer = new RendererPhp(new ViewModel(), $viewscriptResolver);
         $this->assertSame(
             $viewscriptResolver,
             $renderer->getViewscriptResolver(),
@@ -62,7 +62,7 @@ class RendererPhpTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetAndGetViewscriptResolver()
     {
-        $renderer = new RendererPhp(new Viewmodel(), $this->getStandardTemplatemapResolver());
+        $renderer = new RendererPhp(new ViewModel(), $this->getStandardTemplatemapResolver());
         $resolver = new TemplatemapResolver();
 
         $renderer->setViewscriptResolver($resolver);
@@ -77,11 +77,11 @@ class RendererPhpTest extends \PHPUnit_Framework_TestCase
     {
         $testCases = [];
 
-        $viewmodel = new Viewmodel();
+        $viewmodel = new ViewModel();
         $viewmodel->setScriptname('test');
         $testCases[] = [$viewmodel, 'lorem ipsum dolor'];
 
-        $viewmodel = new Viewmodel();
+        $viewmodel = new ViewModel();
         $viewmodel->setScriptname('view/standard/layout');
         $testCases[] = [$viewmodel, 'layout'];
 
@@ -97,7 +97,7 @@ class RendererPhpTest extends \PHPUnit_Framework_TestCase
      * depends TemplatemapResolverTest::testResolverProvidesPathtToIncludableScript
      * depends ViewmodelTest::testSetAndGetScriptname
      */
-    public function testRenderReturnsContentOfPlainTextFile(Viewmodel $viewmodel, $expectedResult)
+    public function testRenderReturnsContentOfPlainTextFile(ViewModel $viewmodel, $expectedResult)
     {
         $renderer = $this->getStandardRenderer();
 
@@ -112,11 +112,11 @@ class RendererPhpTest extends \PHPUnit_Framework_TestCase
     {
         $testCases = [];
 
-        $viewmodel = new Viewmodel();
+        $viewmodel = new ViewModel();
         $viewmodel->setScriptname('first/echo');
         $testCases[] = [$viewmodel, 'Hello World!'];
 
-        $viewmodel = new Viewmodel();
+        $viewmodel = new ViewModel();
         $viewmodel->set('works', 'It works!');
         $viewmodel->setScriptname('mini/html');
         $testCases[] = [$viewmodel, '<html><body>It works!</body></html>'];
@@ -130,7 +130,7 @@ class RendererPhpTest extends \PHPUnit_Framework_TestCase
      * @dataProvider dpSimplePhpCandidates
      * @depends testRenderReturnsContentOfPlainTextFile
      */
-    public function testRenderReturnsContentOfSimplePhpFile(Viewmodel $viewmodel, $expectedResult)
+    public function testRenderReturnsContentOfSimplePhpFile(ViewModel $viewmodel, $expectedResult)
     {
         $renderer = $this->getStandardRenderer();
 
@@ -151,7 +151,7 @@ class RendererPhpTest extends \PHPUnit_Framework_TestCase
      */
     private function getStandardRenderer()
     {
-        $renderer = new RendererPhp(new Viewmodel(), $this->getStandardTemplatemapResolver());
+        $renderer = new RendererPhp(new ViewModel(), $this->getStandardTemplatemapResolver());
         $renderer->setViewscriptResolver($this->getStandardTemplatemapResolver());
         return $renderer;
     }

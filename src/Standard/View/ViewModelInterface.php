@@ -5,7 +5,7 @@
 namespace Standard\View;
 
 
-interface ViewmodelInterface
+interface ViewModelInterface
 {
     public function getScriptname();
 }

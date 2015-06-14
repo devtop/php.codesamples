@@ -25,10 +25,10 @@ class ViewmodelTest extends \PHPUnit_Framework_TestCase
      */
     public function testWriteAndReadData($key, $data)
     {
-        $testModel = new Viewmodel();
+        $testModel = new ViewModel();
         $testModel->set($key, $data);
 
-        $this->assertSame($data, $testModel->get($key), 'Viewmodel does not return inserted structure.');
+        $this->assertSame($data, $testModel->get($key), 'ViewModel does not return inserted structure.');
     }
 
     /**
@@ -48,9 +48,9 @@ class ViewmodelTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetAndGetScriptname($scriptname)
     {
-        $viewmodel = new Viewmodel();
+        $viewmodel = new ViewModel();
 
         $viewmodel->setScriptname($scriptname);
-        $this->assertSame($scriptname, $viewmodel->getScriptname(), 'Viewmodel does not return inserted scrriptname.');
+        $this->assertSame($scriptname, $viewmodel->getScriptname(), 'ViewModel does not return inserted scrriptname.');
     }
 }

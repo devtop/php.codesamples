@@ -4,7 +4,7 @@
  */
 namespace Standard\View;
 
-class Viewmodel implements ViewmodelInterface
+class ViewModel implements ViewModelInterface
 {
     /**
      * @var array
