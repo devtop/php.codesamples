@@ -48,7 +48,7 @@ class Stopwatch
             $formatString = '%01.2F s';
         }
         elseif ($number<0.010){
-            $formatString = '%01.3F µs';
+            $formatString = '%01.2F µs';
         }
         else {
             $formatString = '%d µs';
