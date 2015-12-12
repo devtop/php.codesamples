@@ -53,7 +53,7 @@ class StopwatchTest extends \PHPUnit_Framework_TestCase
     public function testProvidesMicrosecondFormedOutput()
     {
         $stopwatch = new Stopwatch();
-        $this->assertStringMatchesFormat('%d.%d ms', (string)$stopwatch);
+        $this->assertStringMatchesFormat('%d.%d µs', (string)$stopwatch);
     }
 
     /**
@@ -63,7 +63,7 @@ class StopwatchTest extends \PHPUnit_Framework_TestCase
     {
         $stopwatch = new Stopwatch();
         $stopwatch = (string)$stopwatch;
-        $match = '^[01]([.,][\d]{0,3}) ms$';
+        $match = '^[01]([.,][\d]{0,3}) µs$';
         $founds = preg_match("/$match/", $stopwatch);
         $this->assertSame(1, $founds, "$stopwatch should match $match");
     }
@@ -77,7 +77,7 @@ class StopwatchTest extends \PHPUnit_Framework_TestCase
     {
         $stopwatch = new Stopwatch();
         usleep(10000);
-        $founds = preg_match('/^\d{2,} ms$/', (string)$stopwatch);
+        $founds = preg_match('/^\d{2,} µs$/', (string)$stopwatch);
         $this->assertSame(1, $founds, 'String output does not grow.');
     }
 }
